@@ -16,6 +16,7 @@ Staff:
 
 ## License:
 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
+
 NOT FOR COMMERCIAL USE!
 If you intend to use this project of mine for any commercial use, please contact me below to get my permission first.
 
