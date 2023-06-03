@@ -6,13 +6,13 @@ This project was built using HTML, CSS, JavaScript (jQuery) & PHP with a MySQL d
 (TBA)
 
 ## Features:
-Customers:
-- Login
-- Signup 
++ Customers:
+  - Login
+  - Signup 
 
-Staff:
-* Dashboard
-* Customer Orders
++ Staff:
+  - Dashboard
+  - Customer Orders
 
 ## License:
 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
