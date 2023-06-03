@@ -11,8 +11,8 @@ Customers:
 - Signup 
 
 Staff:
-- Dashboard
-- Customer Orders
+* Dashboard
+* Customer Orders
 
 ## License:
 [GNU General Public License v3.0](https://choosealicense.com/licenses/gpl-3.0/)
