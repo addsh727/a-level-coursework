@@ -1,0 +1,76 @@
+@font-face{
+    font-family: 'Varela';
+    src: url(../fonts/VarelaRound-Regular.ttf);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela', sans-serif;
+}
+html, body{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+body{
+    max-height: 100%;
+    max-width: 100%;
+    font-family: "Roboto Mono", "Liberation Mono", Consolas, monospace;
+    color: rgba(255,255,255,.87);
+}
+.background-vid{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+@media (min-aspect-ratio: 16/9) {
+    .background-vid{
+        height: auto;
+        width: 100%;
+    }
+}
+@media (max-aspect-ratio: 16/9) {
+    .background-vid{
+        height: 100%;
+        width: auto;
+    }
+}
+.container{ 
+    height: 100%;
+    width: 100%;
+}
+.row{
+    position: relative;
+    top: 40%;
+    max-height: 100px;
+}
+.error404{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.number{
+    font-size: 64px;
+    font-weight: 500;
+}
+.text{
+    font-weight: 300;
+    text-align: center;
+    font-size: 18px;
+}
+a{
+    text-decoration: underline;
+    color: white;
+}
+.bottom-text{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    bottom: 5%;
+}

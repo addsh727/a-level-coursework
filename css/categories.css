@@ -1,0 +1,58 @@
+.container{
+    height: 100vh;
+    margin: auto;
+}
+.space{
+    height: 100vh;
+    margin: auto;
+}
+.whiteSpace{
+    position: absolute;
+    top: 25%;
+    left: 0;
+    height: 82vh;
+    width: 100%;
+    background: white;
+    z-index: 2;
+}
+h2{
+    position: absolute;
+    top: 25%;
+    left: 42%;
+    right: auto;
+    font-size: 42px;
+    line-height: 80px;
+    z-index: 3;
+}
+h4, p{
+    text-align: center;
+}
+.categories{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    height: 80vh;
+    z-index: 3;
+}
+.cardBox{
+    flex-basis: 25%;
+    padding: 30px;
+}
+.cardBox img{
+    min-width: 250px;
+    max-width: 300px;
+}
+.imageContainer{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 30px;
+    width: 93%;
+    transition: transform 0.5s;
+}
+.cardBox:hover .imageContainer{
+    transform: scale(1.25);
+}

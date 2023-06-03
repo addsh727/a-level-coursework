@@ -1,0 +1,246 @@
+body{
+    min-height: 100vh;
+}
+.sectionContainer{
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 50px 50px 0 120px;
+}
+.headTitle{
+    position: relative;
+    width: max-content;
+    padding: 150px 50px 0 120px;
+}
+.headTitle h1{
+    text-align: left;
+    margin: auto;
+    position: relative;
+    font-size: 36px;
+    font-weight: 1000;
+    line-height: 42px;
+}
+table{
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+}
+.tableResponsive{
+    width: 70%;
+    height: auto;
+    overflow: auto;
+}
+td{
+    min-width: 132px;
+}
+thead td{
+    padding: 1.1rem 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #fff;
+    max-width: 15rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+thead td:nth-child(3){
+    text-align: left;
+}
+thead td{
+    background: black;
+    font-weight: 700;
+    position: sticky !important;
+    top: 0 !important;
+    border: none;
+    z-index: 3;
+}
+thead td:first-child{
+    width: 100px;
+}
+td:nth-child(2){
+    width: 200px;
+}
+.imageContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+table img{
+    max-width: 150px;
+}
+tbody td i{
+    font-size: 24px;
+    color: #ff7782;
+}
+tbody td{
+    text-align: center;
+    background: #fff;
+    padding: 10px;
+}
+tbody td:nth-child(3){
+    text-align: left;
+}
+tbody tr:first-child td{
+    padding-top: 40px;
+}
+tbody tr:last-child td:nth-last-child(2),
+tbody tr:last-child td:last-child{
+    font-size: 22px;
+    font-weight: 700;
+    padding: 40px 0;
+}
+tbody tr:last-child td:last-child{
+    border-top: 1px solid black;
+}
+.checkout{
+    display: block;
+    justify-content: center;
+    position: relative;
+    width: 25%;
+    height: 250px;
+    padding: 20px;
+    margin: 20px;
+    margin-top: 0;
+}
+.totalCost{
+    max-width: 100%;
+}
+.totalCost h2{
+    text-align: center;
+    width: 100%;
+    padding-top: 20px;
+}
+.checkout h3{
+    text-align: center;
+    color: #555;
+    font-size: 32px;
+}
+.quantity{
+    width: max-content;
+    margin: 0 auto;
+}
+.quantity input{
+    position: relative;
+    z-index: 2;
+    font-size: 18px;
+    line-height: 2;
+    margin: 20px 0;
+    height: 35px;
+    width: 60px;
+    border: none;
+    background-color: #fff;
+    color: black;
+    box-shadow: -3px 3px 40px 2px rgba(0,0,0,0.5);
+    text-align: center;
+    transition: all 0.5s;
+}
+.quantity button{
+    font-size: 18px;
+    width: 35px;
+    aspect-ratio: 1;
+    height: auto;
+    background-color: black;
+    color: #fff;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    box-shadow: -3px 3px 40px 2px rgba(0,0,0,0.5);
+}
+.quantity .decreaseQ{
+    transform: translateX(4px);
+    border-radius: 10px 0 0 10px;
+}
+.quantity .incrementQ{
+    transform: translateX(-4px);
+    border-radius: 0 10px 10px 0;
+}
+.checkout{
+    background: #fff;
+    border-radius: 15px;
+}
+.checkout button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: black;
+    color: #fff;
+    padding: 10px 40px;
+    margin-top: 30px;
+    border-radius: 30px;
+    border: none;
+    transition: all 0.5s;
+    font-size: 18px;
+    cursor: pointer;
+}
+.checkout button:hover{
+    background: #555;
+}
+.proceed{
+    display: flex;
+    justify-content: center;
+}
+.deleteCartItem{
+    outline: none;
+    border: none;
+    background: #fff;
+    cursor: pointer;
+}
+/* Make responsive / Media Query For Shopping Cart */
+@media (max-width: 1610px) {
+    .headTitle{
+        padding: 150px 50px 0 50px;
+    }
+    .sectionContainer{
+        padding: 50px 50px 0 50px;
+    }
+    .tableResponsive{
+        width: 100%;
+        overflow-x: auto;
+    }
+    .checkout{
+        width: 100%;
+        margin: 50px auto;
+    }
+}
+@media (max-width: 1440px) {
+    .headTitle{
+        padding: 150px 50px 0 50px;
+    }
+    .sectionContainer{
+        padding: 50px 50px 0 50px;
+    }
+    .tableResponsive{
+        width: 100%;
+    }
+}
+@media (max-width: 1100px) {
+    td:first-child{
+        min-width: 20px;
+        width: 50px;
+    }
+    td:nth-child(2) {
+        min-width: 100px;
+        width: 100px;
+    }
+    table img{
+        max-width: 100px;
+    }
+}
+@media (max-width: 850px) {
+    td{
+        width: 135px;
+    }
+    td:first-child{
+        min-width: 20px;
+        width: 50px;
+    }
+    td:nth-child(2) {
+        min-width: 70px;
+        max-width: 100px;
+    }
+}

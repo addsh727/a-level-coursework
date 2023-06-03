@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'Varela';
+    src: url(../fonts/VarelaRound-Regular.ttf);
+}
+@font-face {
+    font-family: 'Alexandria';
+    src: url(../fonts/Alexandria-Regular.ttf);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela', sans-serif;
+}
+html{
+    scroll-behavior: smooth;
+}
+.hero{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, #fff, #555);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo img{
+    display: block;
+    margin: 1% 5px;
+    max-width: 150px;
+    max-height: 150px;
+}
+.formbox{
+    height: 480px;
+    width: 380px;
+    position: relative;
+    margin: 2% auto;
+    background: #fff;
+    padding: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+.textbox{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error{
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: red;
+    z-index: 1000;
+    margin: 5px;
+}

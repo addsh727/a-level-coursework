@@ -1,0 +1,212 @@
+@font-face {
+    font-family: 'Varela';
+    src: url(../fonts/VarelaRound-Regular.ttf);
+}
+@font-face {
+    font-family: 'Alexandria';
+    src: url(../fonts/Alexandria-Regular.ttf);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela', sans-serif;
+}
+html{
+    scroll-behavior: smooth;
+}
+.hero{
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom, #fff, #555);
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo img{
+    display: block;
+    margin: 1% 5px;
+    max-width: 150px;
+    max-height: 150px;
+}
+#formbox{
+    height: 480px;
+    width: 380px;
+    position: relative;
+    margin: 2% auto;
+    background: #fff;
+    padding: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+.button-box{
+    width: 220px;
+    margin: 55px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #0b22361f;
+    border-radius: 30px;
+}
+.toggle-btn{
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+#btn{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(to right, #a1a1a1, #f6f6f6);
+    border-radius: 30px;
+    transition: 0.5s;
+}
+.input-box{
+    max-height: 88px;
+}
+.input-group{
+    top: 100px;
+    position: absolute;
+    width: 280px;
+    transition: 0.5s;
+    margin-top: 40px;
+}
+.input-field{
+    width: 100%;
+    padding: 10px 0;
+    margin: 20px 0;
+}
+.input-group input[type="text"],
+.input-group input[type="password"],
+.input-group input[type="email"]{
+    border: none;
+    outline: none;
+    background: rgb(235, 235, 235);
+    padding: 1rem 1.5rem;
+    padding-left: calc(1rem*3.2);
+    border-radius: 100px;
+    transition: 0.5s;
+}
+span.input-text{
+    background: rgb(235, 235, 235);
+    position: absolute;
+    left: 0;
+    transform: translate(40px, 27px);
+    padding: 10px;
+    pointer-events: none;
+    color: #777;
+    transition: transform 0.5s, background 1s, background-color 0.5s, border 0.5s;
+}
+.input-group input:focus{
+    background: #fff;
+    border: 1px solid #000;
+    color: #000;
+}
+.input-group input{
+    border: 1px solid #000;
+}
+.input-group input:valid ~ span.input-text,
+.input-group input:focus ~ span.input-text{
+    color: #000;
+    transform: translate(40px, 3px);
+    background-color: #fff;
+}
+.input-group input:valid{
+    background-color: transparent;
+    border: 1px solid #000;
+}
+span.material-symbols-outlined{
+    display: flex;
+    position: absolute;
+    transform: translate(15px, 32px);
+    color: #000;
+}
+.submit-btn{
+    width: 45%;
+    padding: 10px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+    background: #000;
+    color: #fff;
+    transition: background 0.5s;
+}
+.submit-btn:hover{
+    background-color: #555;
+    cursor: pointer;
+}
+.check-box{
+    margin: 20px 10px 40px 0px;
+    accent-color: #000;
+}
+#checkbox-text{
+    color: #777;
+    bottom: 75px;
+}
+.input-group a{
+    text-decoration: none;
+    color: #555;
+    position: absolute;
+    transform: translate(150px, -54px);
+}
+.input-group a:hover{
+    text-decoration: underline;
+    color: #555;
+}
+#login{
+    left: 50px;
+}
+#register{
+    left: 450px;
+}
+#showLogin, #showRegister{
+    display: none;
+    position: absolute;
+    right: 20px;
+    font-size: 1rem;
+    bottom: 144px;
+}
+#hideLogin, #hideRegister{
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-size: 1rem;
+    bottom: 144px;
+}
+.error{
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background: white;
+    color: red;
+    top: 200%;
+    z-index: 1000;
+}
+.formError{
+    position: relative;
+    top: -10px;
+    left: 20px;
+    color: red;
+    z-index: 1000;
+}
+.title{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 225%;
+}

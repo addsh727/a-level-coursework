@@ -1,0 +1,1764 @@
+@font-face{
+    font-family: 'Varela';
+    src: url(../fonts/VarelaRound-Regular.ttf);
+}
+@font-face{
+    font-family: 'Alexandria';
+    src: url(../fonts/Alexandria-Regular.ttf);
+}
+:root{
+    --primaryColour: #777;
+    --textColour: #000;
+    --greyColour: #555;
+    --whiteColour: #fff;
+    --lightWhite: rgb(230, 230, 230);
+
+    --dangerColour: rgb(223, 46, 46);
+    --dangerColourFaded: #ff7782;
+    --successColour: rgb(62, 183, 104);
+    --successColourFaded: limegreen;
+    --safeColour: rgb(40, 134, 235);
+    --safeColourFaded: rgb(107, 175, 248);
+    --pendingColour: violet;
+
+    --backgroundColour: #f6f6f9;
+    --hoverSidebar: rgb(205, 204, 204);
+    --selectedSidebar: rgb(177, 177, 177);
+    --darkColour: #363949;
+    --darkText: #1d2231;
+    --lightColour: #c6c5d5;
+    
+    --sideBarWidth: 320px;
+    --fontSize: 25px;
+
+    --cardBorderRadius: 2rem;
+    --borderRadius1: 0.4rem;
+    --borderRadius2: 0.8rem;
+    --borderRadius3: 0.12rem;
+
+    --cardPadding: 1.8rem;
+    --padding: 1.2rem;
+
+    --sidebarShadow: 0 0 0.7rem var(--lightColour);
+    --boxShadow: 0 2rem 3rem var(--lightColour);
+}
+::-webkit-scrollbar{
+    width: 0.8em;
+    height: 0.8em;
+}
+::-webkit-scrollbar-track{
+    background-color: var(--lightColour);
+    border-radius: 50vw;
+    margin-block: 0.5em;
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--lightWhite);
+    border: 0.25em solid var(--lightColour);
+    border-radius: 80vw;
+    transition: all 0.5s ease-in;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: var(--whiteColour);
+}
+@supports ( scrollbar-color: var(--greyColour) var(--lightColour) ){
+    *{
+        scrollbar-color: var(--greyColour) var(--lightColour);
+        scrollbar-width: thin;
+    }
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    overflow-x: hidden;
+    background: #E4E9F7;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Varela', sans-serif;
+}
+/* Sidebar */
+.active,
+.open .active,
+.active span{
+    transition: none;
+    background: var(--hoverSidebar);
+}
+.open .active .span{
+    transition: none;
+    background: none !important;
+}
+.open .active .links_name,
+.open .active span{
+    color: var(--darkText);
+    transform: translateX(20px);
+}
+.sidebar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 78px;
+    background: var(--backgroundColour);
+    padding: 6px 14px;
+    z-index: 1;
+    transition: all 0.5s ease;
+    box-shadow: var(--sidebarShadow);
+}
+.sidebar.open{
+    width: var(--sideBarWidth);
+}
+.sidebar .logo-details{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-family: 'Alexandria', sans-serif;
+}
+.sidebar .logo-details img{
+    width: 50px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    transform: translateX(-320px);
+    transition-delay: 0s;
+}
+.sidebar .logo-details .logo_name{
+    display: block;
+    min-width: 200px;
+    margin-left: 5px;
+    overflow: hidden;
+    color: var(--darkText);
+    font-size: var(--fontSize);
+    font-weight: 600;
+    opacity: 0;
+    z-index: 1;
+    transition: all 0.5s ease;
+    transform: translateX(-320px);
+    transition-delay: 0s;
+}
+.sidebar.open .logo-details img,
+.sidebar.open .logo-details span,
+.sidebar.open .logo-details .logo_name{
+    opacity: 1;
+    transform: translateX(0px);
+    transition-delay: 0.1s;
+}
+.sidebar .logo-details #btn{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: var(--fontSize);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+.sidebar.open .logo-details #btn{
+    text-align: right;
+    right: -15px;
+    height: 50px;
+    max-width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sidebar span{
+    color: var(--darkText);
+    height: 60px;
+    min-width: 50px;
+    font-size: var(--fontSize);
+    text-align: center;
+    line-height: 60px;
+}
+.sidebar .nav-list{
+    margin-top: 20px;
+    height: 100%;
+}
+.sidebar li{
+    position: relative;
+    margin: 8px 0;
+    list-style: none;
+}
+.sidebar .orderCount{
+    position: relative;
+    left: -70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dangerColourFaded);
+    color: var(--darkText);
+    max-width: 25px;
+    height: 25px;
+    padding: 10px;
+    border-radius: 4px;
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 1;
+    overflow: hidden;
+}
+.sidebar.open .orderCount{
+    opacity: 1;
+    overflow: hidden;
+    left: 145px;
+}
+.sidebar .orderCountPing{
+    position: absolute;
+    left: 36px;
+    top: -5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dangerColourFaded);
+    color: var(--darkText);
+    max-width: 9px;
+    max-height: 9px;
+    padding: 10px;
+    border-radius: 4px;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+    overflow: hidden;
+}
+.sidebar.open .orderCountPing{
+    opacity: 0;
+    transform: translateX(20px);
+    overflow: hidden;
+}
+.sidebar li .tooltip{
+    position: absolute;
+    top: -20px;
+    left: calc(100% + 30px);
+    z-index: 3;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 400;
+    opacity: 0;
+    white-space: nowrap;
+    pointer-events: none;
+    transition: 0s;
+}
+.sidebar li:hover .tooltip{
+    opacity: 1;
+    pointer-events: auto;
+    transition: all 0.4s ease;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.sidebar.open li .tooltip{
+    display: none;
+}
+.sidebar li a{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    background: var(--backgroundColour);
+}
+.sidebar li a:hover{
+    background: var(--hoverSidebar);
+}
+.sidebar li a .links_name{
+    color: var(--darkText);
+    font-size: 18px;
+    font-weight: 400;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+.sidebar.open li a .links_name{
+    opacity: 1;
+    pointer-events: auto;
+}
+.sidebar.open li a:hover .links_name,
+.sidebar.open li a:hover span{
+    transition: all 0.5s ease;
+    color: var(--darkText);
+    transform: translateX(20px);
+}
+.sidebar li span{
+    height: 50px;
+    line-height: 50px;
+    font-size: var(--fontSize);
+    border-radius: 12px;
+    transition: all 0.5s ease;
+}
+.home-section{
+    visibility: hidden;
+    position: relative;
+    min-height: 100vh;
+    top: 0;
+    left: 78px;
+    width: calc(100% - 78px);
+    transition: all 0.5s ease;
+    z-index: 0;
+    padding-bottom: 0px;
+}
+.sidebar.open ~ .admin-panels .home-section{
+    left: var(--sideBarWidth);
+    width: calc(100% - var(--sideBarWidth));
+}
+/* Panels */
+.home-section .text{
+    display: inline-block;
+    color: #11101d;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 22px 18px
+}
+.cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-content: center;
+    grid-gap: 4rem;
+    margin: 5rem;
+}
+.cardItem{
+    display: flex;
+    justify-content: space-between;
+    background: var(--backgroundColour);
+    box-shadow: var(--boxShadow);
+    padding: 32px;
+    border-radius: 10px;
+}
+.cardItem h2{
+    color: var(--darkText);
+    margin: 5px;
+}
+.cardItem .cardText span{
+    color: var(--primaryColour);
+    margin: 5px;
+}
+.cardItem .cardIcon span{
+    font-size: 36px;
+    color: var(--darkColour);
+}
+.largeSection{
+    margin-top: -1rem;
+    display: grid;
+    grid-template-columns: 65% auto;
+}
+.cardHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+.cardHeader h2
+{
+    z-index: 3;
+}
+.cardBody{
+    padding: 25px 1rem 1rem 25px;
+    margin-bottom: 45px;
+    background: var(--backgroundColour);
+    border-radius: 10px;
+    box-shadow: var(--boxShadow);
+    height: 32rem;
+}
+/* Dashboard Panel */
+.recentOrders{
+    margin: 10px 2rem 10px 4rem;
+}
+.recentOrders tr td:nth-child(4){
+    display: flex;
+    align-items: center;
+}
+.recentOrders thead tr td{
+    display: table-cell !important;
+}
+.recentOrders td{
+    min-height: 70px;
+}
+.smallSection{
+    margin: 10px 2rem 10px 4rem;
+}
+.customersTitle{
+    padding: 10px 0 22px 0;
+}
+/* Customers Panel */
+.addTestimonial{
+    position: absolute;
+    right: 80px;
+    width: max-content;
+    top: 22px;
+}
+.addTestimonial button{
+    display: flex;
+    align-items: center;
+    width: 190px;
+    background: var(--primaryColour);
+    border-radius: 10px;
+    color: var(--whiteColour);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primaryColour);
+    cursor: pointer;
+    transition: all 0.5s;
+    right: 0;
+}
+.addTestimonial button:hover{
+    background: var(--selectedSidebar);
+}
+.rating-container{
+    display: block;
+    width: 100%;
+    height: 70px;
+}
+.rating-container p{
+    text-align: center;
+}
+.star-rating{
+    margin: 0 auto;
+    width: 40%;
+    height: 50px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.star-rating input{
+    appearance: none;
+    cursor: pointer;
+}
+.star-rating input::before{
+    content: '★';
+    font-size: 36px;
+    color: #000;
+    transition: 0.5s;
+}
+.star-rating input:hover ~ input::before,
+.star-rating input:hover::before,
+.star-rating input:checked ~ input::before,
+.star-rating input:checked::before{
+    content: '★';
+    color: #ff9933;
+}
+.customers{
+    margin: 10px 4rem 10px 2rem;
+    height: 32rem;
+}
+.customer{
+    margin-top: 0.2rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 29rem;
+}
+.cardHeader button{
+    display: flex;
+    align-items: center;
+    background: var(--primaryColour);
+    border-radius: 10px;
+    color: var(--whiteColour);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primaryColour);
+    cursor: pointer;
+    transition: all 0.5s;
+}
+.cardHeader button:hover{
+    background: var(--selectedSidebar);
+}
+/* Analytics Panel */
+.dashboardGraphs{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin: 10px 4rem 10px 4rem;
+}
+.dashboardGraphs .cardItem{
+    height: 60vh;
+    width: 100%;
+    overflow: auto;
+}
+.analyticHead{
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.cardItem .salesChart, .cardItem .productsChart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto;
+}
+.cardHeader h3{
+    transform: translateX(7px);
+}
+table{
+    border-collapse: collapse;
+}
+thead tr{
+    border-top: 1px solid var(--backgroundColour);
+    border-bottom: 1px solid var(--backgroundColour);
+}
+thead td{
+    background: var(--backgroundColour);
+    font-weight: 700;
+    position: sticky !important;
+    top: 0 !important;
+    transform: translateY(-1px);
+    z-index: 3;
+}
+/* Panel Tables */
+.DashboardTable thead td:not(:last-child)::after,
+.CustomerTable thead td:not(:nth-last-child(3), :nth-last-child(2), :last-child)::after,
+.ProductTable thead td:not(:nth-child(2), :nth-last-child(2), :last-child)::after,
+.CategoryTable thead td:not(:first-child, :nth-last-child(2), :last-child)::after,
+.OrderTable thead td:not(:nth-last-child(2), :last-child)::after,
+.InvoiceTable thead td:not(:last-child)::after,
+.StaffTable thead td:not(:nth-last-child(2), :last-child)::after{
+    content: '';
+    position: absolute;
+    width: 95%;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #C7BEBE;
+}
+.StaffTable thead td:not(:nth-last-child(2), :last-child)::after{
+    width: 98%;
+}
+td{
+    padding: 1.1rem 0.5rem;
+    font-size: 0.9rem;
+    color: var(--darkText);
+    max-width: 15rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+/* Products Panel */
+.ProductTable{
+    padding-top: 10px;
+    table-layout: fixed;
+    height: 890px;
+}
+.ProductTable .tableResponsive{
+    height: 54rem;
+}
+.ProductTable td:nth-child(6){
+    max-height: 200px;
+}
+.ProductTable td:nth-child(6) span{
+    display: block;
+    max-height: 100px;
+    overflow: auto;
+}
+td form{
+    max-width: 72px;
+}
+.threeTableButtons td:last-child,
+.threeTableButtons td:nth-last-child(2),
+.threeTableButtons td:nth-last-child(3){
+    text-align: center;
+    overflow-x: visible;
+}
+.threeTableButtons td:nth-last-child(2){
+    width: 65px;
+}
+.threeTableButtons td:last-child{
+    width: 72px;
+}
+.threeTableButtons td:nth-last-child(3){
+    width: 72px;
+}
+.twoTableButtons td:last-child,
+.twoTableButtons td:nth-last-child(2){
+    width: 90px;
+    text-align: center;
+    overflow-x: hidden;
+}
+td .status{
+    display: block;
+    align-items: center;
+    border-radius: 50%;
+    margin: 0.1rem 1rem 0.2rem 0;
+    height: 10px;
+    width: 10px;
+}
+td img{
+    max-width: 8rem;
+}
+.status.complete{
+    background: var(--successColour);
+}
+.status.pending{
+    background: var(--pendingColour);
+}
+.status.cancelled{
+    background: var(--dangerColour);
+}
+.CategoryTable td:first-child{
+    max-width: 9rem;
+}
+.CategoryTable td:nth-child(4),
+.CategoryTable td:nth-child(5),
+.CategoryTable td:nth-child(7),
+.CategoryTable td:nth-child(8){
+    text-align: center;
+}
+.CategoryTable td:nth-child(7),
+.CategoryTable td:nth-child(8){
+    max-width: 125px;
+}
+.ProductTable td:nth-child(2){
+    width: 9rem;
+    max-width: 9rem;
+}
+.ProductTable td:nth-child(4){
+    max-width: 140px;
+}
+.ProductTable td:nth-child(4),
+.ProductTable td:nth-child(5),
+.ProductTable td:nth-child(7),
+.ProductTable td:nth-child(8),
+.ProductTable td:nth-child(9),
+.ProductTable td:nth-child(10){
+    text-align: center;
+}
+.ProductTable td:nth-child(9),
+.ProductTable td:nth-child(10){
+    max-width: 125px;
+}
+/* Orders Panel */
+.OrderTable tbody td:nth-child(7){
+    display: flex;
+    align-items: center;
+}
+.OrderTable td{
+    text-align: center;
+    min-height: 70px;
+}
+.closeButton{
+    right: 0;
+    width: unset;
+}
+.closeView button{
+    border: 1px solid var(--dangerColour);
+    background: var(--dangerColour);
+    transition: all 0.5s;
+}
+.closeView button:hover{
+    background: var(--dangerColourFaded);
+}
+.closeView span{
+    margin-left: -10px !important;
+    margin-right: 5px;
+}
+#view-order{
+    padding-top: 50px;
+    margin-top: 10px;
+}
+.viewOrder, .viewCustomer{
+    display: flex;
+    flex-wrap: wrap;
+    height: 85vh;
+}
+.viewOrder h3, .viewCustomer h3{
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+    color: #000;
+    margin: 24px 0;
+}
+.viewOrder .orderDetails, .viewCustomer .customerDetails{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 48px;
+}
+.viewOrder .deliverySection, .viewCustomer .profileSection{
+    display: flex;
+    width: 50%;
+    background: #fff;
+    border-radius: 15px;
+    max-height: 70vh;
+}
+.viewOrder .productSection, .viewCustomer .ordersSection{
+    display: flex;
+    width: 50%;
+    background: #fff;
+    border-radius: 15px;
+    max-height: 70vh;
+}
+.viewOrder .deliveryInfo, .viewCustomer .profileInfo{
+    display: block;
+    width: 100%;
+    height: 70vh;
+}
+.viewOrder .productInfo{
+    display: block;
+    width: 100%;
+    height: 70vh;
+}
+.viewOrder label, .viewCustomer label{
+    margin: 12px 0 0 16px;
+}
+.viewOrder .dataRow, .viewCustomer .dataRow{
+    content: '';
+    width: 95%;
+    padding: 8px;
+    margin-left: 16px;
+    margin-bottom: 16px;
+    border-radius: 5px;
+    border: 1px solid #b8b7b7;
+}
+.viewOrder .tableResponsive, .viewCustomer .tableResponsive{
+    max-height: 35vh;
+    width: 95%;
+    overflow: auto;
+    height: auto;
+    margin: 0 auto;
+}
+.viewOrder table, .viewCustomer table{
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+}
+.viewOrder td, .viewCustomer td{
+    min-width: 132px;
+}
+.viewOrder thead td, .viewCustomer thead td{
+    padding: 1.1rem 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #fff;
+    max-width: 15rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.viewOrder thead td:nth-child(2), .viewCustomer thead td:nth-child(2){
+    text-align: left;
+}
+.viewOrder thead td, .viewCustomer thead td{
+    background: black;
+    font-weight: 700;
+    position: sticky !important;
+    top: 0 !important;
+    border: none;
+    z-index: 3;
+}
+.viewOrder td:first-child, .viewCustomer td:first-child{
+    max-width: 80px;
+}
+.viewOrder .imageContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+.viewOrder table img{
+    max-width: 100px;
+}
+.viewOrder tbody td{
+    text-align: center;
+    background: #fff;
+    padding: 10px;
+    padding-bottom: 50px;
+}
+.viewOrder tbody td:nth-child(2){
+    text-align: left;
+}
+.viewOrder tbody tr:first-child td{
+    padding-top: 40px;
+}
+.viewOrder .quantity{
+    width: max-content;
+    margin: 0 auto;
+}
+.viewOrder .quantity p{
+    color: #000;
+}
+.viewOrder p::after{
+    all: unset;
+}
+.viewOrder .flex{
+    display: flex;
+    gap:15px;
+    width: 97%;
+}
+.viewOrder .flex .inputBox{
+    width: 50%;
+}
+.viewOrder .flex span{
+    display: block;
+    margin-left: 16px;
+}
+#view-customer{
+    margin: 5rem 2rem 10px 2rem;
+}
+.viewCustomer td{
+    text-align: center;
+}
+.viewCustomer td form{
+    margin: 0 auto;
+    width: auto;
+    height: auto;
+}
+.viewCustomer .customerDetails{
+    flex-wrap: wrap;
+    height: 100%;
+    gap: 0;
+}
+.viewCustomer .profileSection{
+    width: 100%;
+}
+.viewCustomer .profileInfo{
+    height: 350px;
+}
+.viewCustomer .ordersSection{
+    width: 100%;
+}
+.viewCustomer .viewEntity{
+    overflow: visible;
+    max-width: max-content;
+}
+.viewCustomer td:last-child{
+    min-width: 70px;
+    width: 90px;
+}
+.viewCustomer button{
+    transform: translateX(-10px);
+}
+/* Invoices Panel */
+.InvoiceTable{
+    height: 85vh;
+}
+.InvoiceTable .tableResponsive{
+    height: 100%;
+}
+.InvoiceTable td{
+    min-height: 70px;
+}
+.InvoiceTable td:nth-last-child(3),
+.InvoiceTable td:nth-last-child(2){
+    width: 130px;
+}
+.InvoiceTable tbody td:nth-child(7){
+    display: flex;
+    align-items: center;
+}
+.InvoiceTable td:not(:nth-child(7), :last-child){
+    text-align: center;
+}
+.InvoiceTable td:last-child{
+    max-width: 80px;
+}
+.InvoiceTable a{
+    margin-left: 100px;
+}
+.tableResponsive{
+    width: 100%;
+    overflow-x: auto;
+    height: 30rem;
+}
+.details{
+    display: flex;
+    align-items: center;
+    margin: 20px 15px;
+}
+.details span{
+    margin-right: 1rem;
+}
+.details h4{
+    font-size: 0.8rem;
+    margin-right: 0;
+    margin-left: auto;
+    font-weight: 600;
+    color: var(--darkText);
+}
+.joinTime{
+    position: relative;
+    margin-right: 0;
+    margin-left: auto;
+    right: -1vw;
+    color: var(--primaryColour);
+}
+/* Forms */
+.wrapper{
+    position: relative;
+    max-width: 430px;
+    width: 100%;
+    background: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+.entityEditContainer{
+    padding: 45px 0 60px 0;
+}
+.entityEditBox form .input-box,
+.wrapper form .input-box{
+    height: 52px;
+    margin: 12px 0;
+}
+.entityEditBox form .input-box input,
+form .input-box input,
+.submitButton,
+.cancelButton{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding: 0 15px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    border: 1.5px solid #C7BEBE;
+    border-bottom-width: 2.5px;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+.viewStaffProfile form .input-box{
+    height: 80px !important;
+}
+.viewStaffProfile form .input-box input{
+    height: 52px !important;
+}
+.entityEditBox .input-box input:focus,
+.entityEditBox .input-box input:valid,
+.input-box input:focus,
+.input-box input:valid{
+    border-color: var(--darkText);
+}
+.entityEditBox form .policy
+form .policy{
+    display: flex;
+    align-items: center;
+}
+.entityEditBox form h3,
+form h3{
+    color: #707070;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+.entityEditBox .input-box.button,
+.input-box.button{
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+.entityEditBox .input-box.button input,
+.input-box.button input{
+    color: #fff;
+    font-size: 18px;
+    letter-spacing: 1px;
+    padding: 15px;
+    border-bottom-width: 2.5px;
+    border-radius: 5rem;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+.input-box.button input{
+    width: 100%;
+    background: var(--greyColour);
+}
+.input-box.button input:hover{
+    background: var(--darkColour);
+}
+.entityEditBox .input-box.button input{
+    background: var(--successColour);
+}
+.entityEditBox .input-box.button input:hover{
+    background: var(--successColourFaded);
+}
+.entityEditBox .input-box.button.cancel input{
+    background: var(--dangerColour);
+}
+.entityEditBox .input-box.button.cancel input:hover{
+    background: var(--dangerColourFaded);
+}
+.entityEditBox form .text h3,
+form .text h3{
+    color: #333;
+    width: 100%;
+    text-align: center;
+}
+.formCheckboxes{
+    display: flex;
+    justify-content: center;
+    gap: 25%;
+    margin-top: 15px;
+}
+.formCheckbox{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    accent-color: #000;
+}
+.selectBox{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 52px;
+}
+.wrapper form select, .orderDetails form select, .entityEditBox form select{
+    outline: 0;
+    padding: 0 30px 0 15px;
+    color: #333;
+    background-color: white;
+    border-radius: 1rem;
+    border: 1px solid #C7BEBE;
+    border-bottom-width: 2.5px;
+    margin: 0.6rem 0;
+    width: 100%;
+    max-width: 410px;
+    min-height: 52px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+.wrapper form textarea, .entityEditBox form textarea{
+    font-size: 16px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 1rem 1rem 0 1rem;
+    padding: 1em;
+    border: 1px solid #C7BEBE;
+    border-bottom-width: 2.5px;
+    margin: 0.9rem 0;
+    width: 100%;
+    max-width: 410px;
+    min-height: 52px;
+    outline: none;
+    transition: all 0.3s ease;
+    resize: vertical;
+    background-image: linear-gradient(
+        -45deg,
+        #C7BEBE 12px,
+        transparent 12px
+    );
+}
+.wrapper form textarea:focus, .entityEditBox form textarea:focus{
+    border-color: var(--darkText)
+}
+.wrapper form textarea input:valid, .entityEditBox form textarea input:valid{
+    border-color: var(--darkText)
+}
+.wrapper form label{
+    gap: 1em;
+}
+.uploadButton{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.imageContainer{
+    max-width: 100%;
+}
+.imageContainer img{
+    width: 410px;
+    max-width: 100%;
+}
+figcaption{
+    margin-top: 20px;
+    text-align: center;
+}
+input[type="file"]{
+    display: show;
+    font-size: 1px;
+    position: absolute;
+}
+.imageContainer label{
+    display: flex;
+    position: relative;
+    text-align: center;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+    background-color: var(--greyColour);
+    color: var(--whiteColour);
+    width: 160px;
+    padding: 10px 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+.imageContainer label:hover{
+    background-color: var(--darkText);
+}
+.priceInput input[type=number]{
+    position: relative;
+    top: -25px;
+    padding: 1rem 1.5rem !important;
+    padding-left: 2rem !important;
+}
+.priceInput span{
+    font-size: 18px;
+    position: relative;
+    top: 15px;
+    left: 12px;
+    z-index: 5;
+}
+label p{
+    margin-top: 1%;
+}
+.entityMargins{
+    margin: 10px 4rem 10px 4rem;
+}
+.viewEntity,
+.editEntity,
+.deleteEntity,
+.saveButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: var(--whiteColour);
+    font-size: 1rem;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    width: auto;
+    float: right;
+}
+.viewEntity, .settings .cardHeader button{
+    background: var(--safeColour);
+    border: 1px solid var(--safeColour);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.viewEntity:hover, .settings .cardHeader button:hover{
+    background: var(--safeColourFaded);
+}
+.editEntity{
+    background: var(--successColour);
+    border: 1px solid var(--successColour);
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+.editEntity:hover{
+    background: var(--successColourFaded);
+}
+.deleteEntity:hover{
+    background: var(--dangerColourFaded);
+}
+.deleteEntity{
+    background: var(--dangerColour);
+    border: 1px solid var(--dangerColour);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    float: right;
+}
+.singleGrid{
+    margin-top: -1rem;
+    display: grid;
+    grid-template-columns: 98% auto;
+}
+.singleGrid td{
+    position: relative;
+    padding: 1rem 0.5rem;
+    font-size: 0.9rem;
+    color: var(--darkText);
+    max-width: 15rem;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+.singleGrid a{
+    display: block;
+    max-width: 64px;
+}
+td h4{
+    font-size: 18px;
+}
+td p{
+    color: var(--primaryColour);
+    font-size: 14px;
+}
+td p::after{
+    content: '';
+    position: absolute;
+    top: 57%;
+    left: 20%;
+    height: 2px;
+    background: var(--dangerColour);
+    animation: strike 0.5s ease 2s forwards;
+}
+@keyframes strike{
+    from{
+        width: 0;
+    }
+    to{
+        width: 75px;
+    }
+}
+.addEntity{
+    position: relative;
+    top: 0rem;
+    right: 115%;
+    width: 8.5rem;
+}
+.entityEditBox{
+    padding: 25px 2rem 2rem 25px;
+    background: var(--backgroundColour);
+    border-radius: 10px;
+    box-shadow: var(--boxShadow);
+    width: 50vw;
+    max-width: 460px;
+    min-width: 350px;
+    margin-top: 10px;
+}
+.summaries{
+    display: grid;
+    width: 60%;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: center;
+    grid-gap: 4rem;
+    margin: 4rem;
+}
+.summaries .cardItem{
+    min-width: 236px;
+}
+.counter{
+    max-height: 4rem;
+    overflow: hidden;
+}
+.productButton{
+    width: max-content;
+    right: 100px;
+}
+/* Search Bar(s) */
+.search{
+    background-color: var(--backgroundColour);
+    width: calc(30vw + 80px);
+    height: 40px;
+    padding: 0px 25px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search input{
+    width: 95%;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 18px;
+}
+.search span{
+    color: #333;
+    cursor: help;
+    transition: 0.5s ease;
+}
+.search span:hover{
+    scale: 1.25;
+}
+/* Date Filters */
+.datesContainer{
+    transform: translateY(-48px);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 80vw;
+    height: 40px;
+}
+.invoiceDates{
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+}
+.invoiceSearch{
+    margin: 0 auto;
+}
+.dates{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 1rem;
+}
+input[type="date"]{
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: var(--boxShadow);
+}
+.dates button{
+    height: 40px;
+    font-size: 24px;
+    font-weight: 1000;
+    padding-bottom: 0.6rem;
+    padding-top: 0.4rem;
+}
+/* Exports */
+.exportProducts button,
+.exportOrders button{
+    position: absolute;
+    width: max-content;
+    background: var(--safeColour);
+    border: 1px solid var(--safeColour);
+    transition: all 0.5s;
+}
+.exportProducts button{
+    right: 175px;
+    top: 10px;
+}
+.exportOrders button{
+    right: 0;
+    top: 0;
+}
+.exportProducts button:hover,
+.exportOrders button:hover{
+    background: var(--safeColourFaded);
+}
+.exportProducts select, .exportOrders select{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: max-content;
+    outline: 0;
+    padding: 0 15px 0 15px;
+    color: #333;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #C7BEBE;
+    border-bottom-width: 2.5px;
+    width: 100px;
+    height: 45px;
+    outline: none;
+    transition: all 0.3s ease;
+    font-size: 16px;
+}
+.exportProducts select{
+    right: 300px;
+    top: 8px;
+}
+.exportOrders select{
+    right: 125px;
+    top: -1px;
+}
+.categoryButton{
+    width: max-content;
+    right: 105px;
+}
+.updateOrder{
+    height: 80px;
+}
+.updateOrderText{
+    font-size: 20px;
+}
+/* Reports Panel */
+.noteWrapper{
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, 265px);
+    margin-bottom: 75px;
+}
+.noteWrapper li{
+    height: 250px;
+    list-style: none;
+    background: var(--backgroundColour);
+    border-radius: 10px;
+    box-shadow: var(--boxShadow);
+    padding: 15px 20px 20px;
+}
+.noteWrapper .note{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.addNoteBox, .noteIcon, .bottomText,
+.noteSettings .noteMenu li, .notePopup, .popupContent header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.addNoteBox{
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+.addNoteBox .noteIcon{
+    height: 65px;
+    width: 65px;
+    justify-content: center;
+    font-size: 45px;
+    border-radius: 50%;
+    border: 2px dashed var(--primaryColour);
+    color: var(--primaryColour);
+}
+.addNoteBox p{
+    margin-top: 20px;
+    font-weight: 700;
+}
+.note p{
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--darkText);
+}
+.note span{
+    display: block;
+    margin-top: 5px;
+    color: var(--primaryColour);
+}
+.noteText span{
+    max-height: 140px;
+    overflow: auto;
+}
+.note .bottomText{
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+.bottomText span{
+    color: var(--greyColour);
+}
+.bottomText .noteSettings span{
+    color: var(--darkText);
+    cursor: pointer;
+}
+.noteSettings{
+    position: relative;
+    box-shadow: var(--boxShadow);
+    background: none;
+}
+.noteSettings .noteMenu{
+    position: absolute;
+    bottom: 0;
+    right: -5px;
+    background: var(--backgroundColour);
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: var(--boxShadow);
+    cursor: pointer;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: transform 0.2s ease;
+}
+.noteSettings.show .noteMenu{
+    transform: scale(1);
+}
+.noteSettings .noteMenu li{
+    margin-top: 5px;
+    font-weight: 600;
+    height: 25px;
+    border-radius: 0;
+    justify-content: flex-start;
+    box-shadow: none;
+    transition: all 0.5s ease;
+}
+.noteSettings .noteMenu li:hover{
+    background: var(--hoverSidebar);
+}
+.noteSettings .noteMenu span{
+    margin-top: 0;
+    margin-right: 5px;
+    color: var(--primaryColour);
+}
+.notePopupBox{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+.notePopupBox .notePopup{
+    z-index: 1001;
+    position: absolute;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    max-width: 600px;
+    width: 100%;
+    transform: translate(-50%, -50%);
+}
+.notePopupBox, .notePopupBox .notePopup{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+.notePopupBox.show, .notePopupBox.show .notePopup{
+    opacity: 1;
+    pointer-events: auto;
+}
+.notePopup .popupContent{
+    background: var(--backgroundColour);
+    border-radius: 10px;
+    width: 100%;
+}
+.notePopup .popupContent header{
+    border-bottom: 1px solid #ccc;
+    padding: 15px 25px;
+}
+.popupContent header p{
+    font-size: 18px;
+    font-weight: 600;
+}
+.popupContent header span{
+    cursor: pointer;
+    color: var(--primaryColour);
+    font-size: 20px;
+}
+.popupContent form{
+    margin: 15px 25px 35px;
+}
+form .noteRow label{
+    display: block;
+    margin-bottom: 5px;
+}
+.popupContent form .noteRow{
+    margin-bottom: 20px;
+}
+.popupContent form :where(input, textarea){
+    width: 100%;
+    height: 50px;
+    outline: none;
+    font-size: 17px;
+    padding: 0 15px;
+    border-radius: 4px;
+    border: 1px solid #999;
+}
+.popupContent form textarea{
+    margin-top: 0;
+    padding: 15px 15px;
+    overflow: auto;
+    min-height: 55px;
+    height: 300px;
+    max-height: 500px;
+    max-width: 100%;
+}
+.popupContent form button{
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    color: #fff;
+    background: var(--primaryColour);
+    cursor: pointer;
+    border: none;
+    outline: none;
+}
+.revenue{
+    display: flex;
+    justify-content: center;
+    gap: 0rem;
+}
+.revenue h2:nth-child(2){
+    margin-left: -5px;
+}
+.flexCard{
+    display: flex;
+    gap: 4rem;
+}
+/* Settings Panel */
+.settings{
+    height: 750px;
+    width: 72%;
+}
+.settings form{
+    height: 100%;
+}
+.settings .cardBody{
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+}
+.settings input[type="checkbox"]{
+    accent-color: #000;
+    margin-right: 12px;
+}
+.settings label{
+    display: block;
+    margin: 20px 0;
+    font-size: 18px;
+}
+.saveButton{
+    float: none;
+    position: relative;
+    bottom: 1;
+}
+.Copyright{
+    color: var(--greyColour);
+    text-align: center;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+}
+/* Make responsive / Media Query For Dashboard */
+@media (max-width: 420px){
+    .sidebar li .tooltip{
+        display: none;
+    }
+}
+@media only screen and (max-width: 1550px){
+    td p::after{
+        left: 15%;
+    }
+    .settings{
+        height: 750px;
+        width: 62%;
+    }
+}
+@media only screen and (max-width: 1450px){
+    .cards{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .largeSection{
+        grid-template-columns: 60% 40%;
+    }
+    .summaries{
+        width: 70%;
+    }
+    .joinTime{
+        right: 0.1vw;
+    }
+    table{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 1300px){
+    .dashboardGraphs{
+        grid-template-columns: 1fr;
+    }
+    .dashboardGraphs .cardItem{
+        height: 40vh;
+    }
+    #ProductsTable .cardHeader{
+        margin-top: 50px;
+    }
+    #Orders .cardHeader{
+        margin-top: 50px;
+    }
+    #Invoices .datesContainer{
+        transform: translateY(-45px);
+        margin-top: 15px;
+    }
+    #Products .search{
+        transform: translateY(-85px)
+    }
+    #Orders .search{
+        transform: translateY(-85px)
+    }
+}
+@media only screen and (max-width: 1100px){
+    .largeSection{
+        grid-template-columns: 95%;
+    }
+    .summaries{
+        width: 100%;
+        grid-template-columns: 95%;
+    }
+    .staffGrid{
+        grid-template-columns: 95%;
+    }
+    .customers{
+        margin: 60px 2rem 60px 4rem;
+    }
+    .joinTime{
+        right: 7vw;
+    }
+    .viewOrder{
+        display: flex;
+        flex-wrap: wrap;
+        height: max-content;
+    }
+    .viewOrder .orderDetails{
+        flex-wrap: wrap;
+        height: 150vh;
+    }
+    .viewOrder .deliverySection{
+        width: 100%;
+        height: 90vh;
+    }
+    .viewOrder .productSection{
+        width: 100%;
+        height: 50vh;
+    }
+    .viewOrder .productInfo{
+        height: 50vh;
+    }
+    .flexCard{
+        flex-wrap: wrap;
+    }
+    .settings{
+        width: 98%;
+    }
+}
+@media only screen and (max-width: 800px){
+    .home-section{
+        padding-top: 50px;
+    }
+    .largeSection{
+        margin: 30px 0;
+    }
+    .cards{
+        grid-template-columns: repeat(1, 1fr);
+        margin: 2rem;
+        gap: 2rem;
+    }
+    .recentOrders{
+        margin: 10px 1rem 10px 2rem;
+    }
+    .smallSection{
+        margin: 10px 1rem 10px 2rem;
+    }
+    .customers{
+        margin: 10px 1rem 10px 2rem;
+    }
+    .summaries{
+        margin: 10px 1rem 10px 2rem;
+    }
+    .staff{
+        margin: 10px 1rem 10px 2rem;
+    }
+    .entityMargins{
+        margin: 10px 2rem 10px 2rem;
+    }
+    .entityEditBox{
+        min-width: 220px;
+    }
+    .joinTime{
+        right: -5vw;
+    }
+    .viewOrder .orderDetails{
+        height: 140vh;
+        gap: 60px;
+    }
+    .settings{
+        width: 100%;
+        min-width: 220px;
+    }
+    .dashboardGraphs{
+        margin: 10px 2rem 10px 2rem;
+        gap: 2rem;
+    }
+}
+@media only screen and (max-width: 450px){
+    .sidebar.sidebar.open{
+        width: 60vw;
+    }
+    .sidebar.open ~ .admin-panels .home-section{
+        left: 60vw;
+        width: calc(100% - 60vw);
+    }
+    .sidebar.open li.profile{
+        width: 60vw;
+    }
+    .sidebar .logo-details .logo_name{
+        display: flex;
+        min-width: 70px;
+    }
+    .joinTime{
+        right: -25vw;
+    }
+}
