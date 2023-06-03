@@ -14,6 +14,9 @@ Clone this repository into `public_html` using [Git](https://git-scm.com/) by ru
 
 ...or alternatively, download the files and extract using [WinRAR](https://www.win-rar.com/start.html?&L=0) or [7zip](https://www.7-zip.org/).
 
+Nagivate to `public_html/PHPOffice` and `public_html/js/SwiperJS` and extract the `.RAR` files.
+Folders were too large to upload onto GitHub :P
+
 ---
 
 Install [XAMPP](https://www.apachefriends.org/)  (Video tutorials can be found [here](https://www.youtube.com/results?search_query=xampp+installation)).
