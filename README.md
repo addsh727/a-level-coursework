@@ -6,10 +6,6 @@ A showcase of my project on YouTube is available [here](https://youtube.com/play
 
 ## Installation:
 
-Full tutorials can be found [here](https://www.youtube.com/results?search_query=xampp+installation).
-
----
-
 Create a new `public_html` folder.
 
 Clone this repository into `public_html` using [Git](https://git-scm.com/) by running:
@@ -20,7 +16,7 @@ Clone this repository into `public_html` using [Git](https://git-scm.com/) by ru
 
 ---
 
-Install [XAMPP](https://www.apachefriends.org/).
+Install [XAMPP](https://www.apachefriends.org/)  (Video tutorials can be found [here](https://www.youtube.com/results?search_query=xampp+installation)).
 
 Navigate to the XAMMP directory folder, then locate the `htdocs` folder and drag the folder `public_html` into `htdocs`.
 
@@ -42,14 +38,35 @@ Paste the following URL into the browser:
 
 And you should now have access to the eCommerce website!
 
-## Super Admin Access
+## Setup PayPal API for Payment:
+
+Video tutorials can be found [here](https://www.youtube.com/results?search_query=paypal+payment+api).
+
+For the PayPal API to process transactions correctly, you must first obtain a PayPal client ID by through PayPal Developer.
+
+Once obtained, locate `checkout.php`, then search for `$token`. 
+
+Paste your PayPal client ID therein which will connect the website's payment gateway to your PayPal Developer Dashboard.
+
+## Super Admin Access:
+
+You can login to both the customer and staff portals with these details.
 
 Owner Account Login:
 
     s2106630@leyton.ac.uk
+
 Password:
 
     password
+
+## Emails:
+
+To configure the email templates, nagivate to `public_html/php` folder.
+
+Open the `send----.php` email templates. Edit the `$from` variables to the email address from which you wish to send emails from along with others if needed.
+
+Video tutorials can be found [here](https://www.youtube.com/results?search_query=phpmailer+send+email).
 
 ## Features:
 - Customers:
