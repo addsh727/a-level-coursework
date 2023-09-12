@@ -4,6 +4,8 @@ This project was built using HTML, CSS, JavaScript (jQuery) & PHP with a MySQL d
 
 A showcase of my project on YouTube is available [here](https://youtube.com/playlist?list=PLoMhAx1hylZZJw7NuMwyvaeryQvakKA2b).
 
+[![Zed's Galaxy](https://img.youtube.com/vi/8GwY2n9JDLw/0.jpg)](https://www.youtube.com/watch?v=8GwY2n9JDLw&list=PLoMhAx1hylZZJw7NuMwyvaeryQvakKA2b)
+
 ## Installation:
 
 Create a new `public_html` folder.
