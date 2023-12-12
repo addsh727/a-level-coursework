@@ -2,7 +2,8 @@
 This project of mine is an eCommerce website for Zed’s Galaxy which I submitted as coursework for the A-Level Computer Science Non-Exam Assessment with the AQA exam board.
 This project was built using HTML, CSS, JavaScript (jQuery) & PHP with a MySQL database as the backend.
 
-For your interest, Check my 400+ page documentation using Waterfall methodology [here](https://drive.google.com/file/d/1BCk4qrJq2bmzFjgSFhbvW_6wbDPNmfv9/view?usp=sharing).
+For your interest, check my 400+ page documentation using Waterfall methodology [here](https://drive.google.com/file/d/1BCk4qrJq2bmzFjgSFhbvW_6wbDPNmfv9/view?usp=sharing).
+
 It received 73/75 by the AQA Exam Board.
 
 A showcase of my project on YouTube is also available [here](https://youtube.com/playlist?list=PLoMhAx1hylZZJw7NuMwyvaeryQvakKA2b).
